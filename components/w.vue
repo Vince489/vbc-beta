@@ -1,14 +1,13 @@
 <template>
-  <div class="container px-4 py-8 md:p-8 pt-18 flex flex-col md:flex-row justify-between items-center">
-    <h1 class="text-2xl md:text-3xl font-semibold mb-4 md:mb-0">All Fighters</h1>
-    <div class="flex flex-col md:flex-row items-center w-full md:w-auto">
-      <div class="w-full md:w-64 flex justify-between items-center pr-4 mb-4 md:mb-0">
-        <input type="text" class="border border-gray-300 text-gray-800 rounded-md py-2 px-4 w-full" placeholder="Search fighters...">
+  <div class="container p-8 pt-18 flex flex-col md:flex-row justify-between items-center">
+    <h1 class="text-3xl font-semibold mr-8 mb-4 md:mb-0">All Fighters</h1>
+    <div class="flex flex-col md:flex-row">
+      <div class="flex justify-between items-center pr-4">
+        <input type="text" class="border border-gray-300 text-gray-800 rounded-md py-2 px-4 w-full md:w-96" placeholder="Search fighters...">
       </div>
-      <div class="relative w-full md:w-auto text-gray-800">
+      <div class="relative mt-4 md:mt-0 md:ml-4 text-gray-800">
         <select v-model="selectedWeightClass"
           class="border border-gray-300 rounded-md py-2 px-4 appearance-none w-full md:w-auto">
-          <!-- Options -->
           <option value="">Weight Class</option>
           <option value="Super Featherweight">Super Featherweight (126-130 lbs)</option>
           <option value="Lightweight">Lightweight (130–135 lbs)</option>
@@ -23,7 +22,6 @@
         </select>
         <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
           <svg class="fill-current h-4 w-4 transform rotate-180" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-            <!-- SVG Path -->
             <path
               d="M14.95 7.95a.999.999 0 1 0-1.41-1.41l-3.54 3.54a.999.999 0 0 0 0 1.41l3.54 3.54a.999.999 0 1 0 1.41-1.41L11.41 10l3.54-3.54z" />
           </svg>
@@ -32,19 +30,16 @@
     </div>
   </div>
 
-  <div class="container px-4 mt-10 justify-center gap-6 flex flex-wrap">
-    <!-- Fighters loop -->
+  <div class="container mt-10 justify-center gap-6 flex flex-wrap">
     <div v-for="fighter in filteredFighters" :key="fighter._id">
       <Fighters :fighter="fighter" />
     </div>
 
-    <!-- No fighters message -->
     <div v-if="showNoFightersMessage" class="text-center text-gray-600 mt-4">
       No fighters in this weight class.
     </div>
   </div>
 </template>
-
 
 <script>
 import Fighters from '@/components/Fighters.vue'
