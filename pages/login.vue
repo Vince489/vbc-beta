@@ -28,43 +28,29 @@
   </div>
 </template>
 
-<script>
-export default {
-  data() {
-    return {
-      userName: '', // Changed from 'username' to 'userName'
-      password: ''
-    }
-  },
-  methods: {
-    async handleSubmit() {
+<script setup>
+import { useAuthStore } from '~/stores/authStore';
+
+const authStore = useAuthStore();
+const router = useRouter();
+
+let userName = '';
+let password = '';
+
+const handleSubmit = async () => {
   try {
-    const response = await fetch('http://localhost:5550/api/v1/user/login', {
-      method: 'POST',
-      mode: 'cors',
-      headers: { 'Content-Type': 'application/json' },
-      credentials: 'include',
-      body: JSON.stringify({
-        userName: this.userName,
-        password: this.password
-      })
-    });
-
-    if (!response.ok) {
-      throw new Error('Failed to login');
+    const loggedIn = await authStore.login(userName, password);
+    if (loggedIn) {
+      console.log('Login successful');
+      // Redirect to dashboard
+      router.push('/dashboard');
+    } else {
+      console.error('Login failed');
+      // Handle login failure
     }
-
-    const responseData = await response.json();
-    console.log(responseData);
-    console.log('Login successful');
-    // Redirect to dashboard
-    this.$router.push('/dashboard');
   } catch (error) {
-    console.error(error);
+    console.error('Login failed:', error);
     // Handle login error
-  }
-}
-
   }
 }
 </script>

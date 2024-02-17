@@ -9,6 +9,9 @@ import { useAuthStore } from '~/stores/authStore';
 
 const authStore = useAuthStore();
 
+// Call the loadUserData action when the component is mounted
+authStore.fetchAuthState();
+
 const userName = authStore.userName;
 </script>
 
