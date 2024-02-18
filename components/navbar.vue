@@ -1,7 +1,7 @@
 <template>
   <div class="px-4 lg:px-6 max-w-screen-lg mx-auto">
     <!-- navbar goes here -->
-    <nav id="Navbar" class="pt-2 z-40 bg-gray-700 fixed inset-x-0">
+    <nav id="Navbar" class="pt-2 z-40 bg-gray-800 fixed inset-x-0">
       <div class="px-6 pb-2 mx-auto">
         <div class="flex justify-between">
           <div class="flex space-x-4">
@@ -58,11 +58,15 @@
 
       <!--mobile menu-->
       <div v-if="toggle_menu" id="mobile-menu" class="mobile-menu md:hidden">
-        <nuxt-link to="/events" class="block py-3 px-4 hover:bg-gray-200"
+        <!-- <nuxt-link to="/events" class="text-gray-100 block py-3 px-4 hover:bg-gray-200"
           >Events</nuxt-link
-        >
-        <nuxt-link to="/fighters" class="block py-3 px-4 hover:bg-gray-200"
+        > -->
+        <nuxt-link to="/fighters" class="text-gray-100 block py-3 px-4 hover:bg-gray-200"
           >Fighters</nuxt-link
+        >
+        <nuxt-link to="login" class="text-gray-100 block py-3 px-4 hover:bg-gray-200">Login</nuxt-link
+        >        
+        <nuxt-link to="signup" class="text-gray-100 block py-3 px-4 hover:bg-gray-200">Sign up</nuxt-link
         >
       </div>
 

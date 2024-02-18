@@ -1,105 +1,30 @@
 <template>
-  <div>
-    <!-- navbar goes here -->
-    <nav id="navbar" class="pt-2 z-40 bg-gray-700 fixed inset-x-0">
-      <div class="px-6 pb-2 mx-auto">
-        <div class="flex justify-between">
-          <div class="flex space-x-4">
-            <!-- logo -->
-            <div>
-              <nuxt-link
-                to="/"
-                class="flex items-center py-3 px-3 text-gray-100">
-                
+  <section class="relative h-screen">
+    <div class="overflow-hidden">
+      <img class="absolute inset-0 h-full w-full object-cover" src="/img/lee-ko.png" alt="hero image">
+    </div>
 
-                <span class="text-3xl font-bold">VBC</span>
-              </nuxt-link>
-            </div>
+    <div class="overlay absolute inset-0 bg-black opacity-40"></div>
 
-            <!-- primary nav-->
-            <div class="hidden md:flex items-center space-x-3">
-
-              <nuxt-link to="/fighters" class="font-semibold py-3 px-3 text-gray-300">Fighters</nuxt-link>
-              <nuxt-link to="/ebca" class="font-semibold py-3 px-3 text-gray-300">EBCA</nuxt-link>
-              <nuxt-link to="/about" class="font-semibold py-3 px-3 text-gray-300">About</nuxt-link>
-              <nuxt-link to="#/contact" class="font-semibold py-3 px-3 text-gray-300">Contact</nuxt-link>
-
-            </div>
-          </div>
-
-          <!--second nav-->
-          <div class="hidden md:flex items-center space-x-3">
-            <nuxt-link to="login" class="font-semibold py-1 px-3 text-gray-300">Login</nuxt-link>
-            <nuxt-link to="signup" class="btn">Sign up</nuxt-link>
-          </div>          
-
-
-          <!-- mobile button-->
-          <div id="menu-btn" class="text-gray-100 md:hidden flex items-center">
-            <button @click="toggleMenu" class="mobile-menu-button">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="currentColor"
-                class="w-8 h-8"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
-                />
-              </svg>
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 mt-24 md:mt-0"> <!-- Adjusted margin and padding -->
+      <div class="flex justify-center items-center h-full"> <!-- Center content vertically -->
+        <div class="lg:w-1/2 text-center relative"> <!-- Adjusted width -->
+          <div class="space-y-6 mb-10">
+            <h2 class="text-gray-100 text-6xl lg:text-8xl leading-tight capitalize font-semibold">
+              SIM BOXING LEAGUE
+            </h2>
+            <p class="text-gray-100 text-3xl font-semibold">
+              Don't leave it to the judges.
+            </p>
+            <p class="text-gray-100 text-lg">
+              Professional (NO HUD) Boxing.
+            </p>
+            <button class="btn">
+              Join Now!
             </button>
           </div>
         </div>
       </div>
-
-      <!--mobile menu-->
-      <div v-if="toggle_menu" id="mobile-menu" class="mobile-menu md:hidden">
-        <nuxt-link to="/events" class="block py-3 px-4 hover:bg-gray-200"
-          >Events</nuxt-link
-        >
-        <nuxt-link to="/fighters" class="block py-3 px-4 hover:bg-gray-200"
-          >Fighters</nuxt-link
-        >
-      </div>
-
-      
-    </nav>
-    
-  </div>
+    </div>
+  </section>
 </template>
-
-<script setup>
-  let toggle_menu = ref(false);
-  let toggle_profile = ref(false);
-
-  onMounted(() => {
-    window.addEventListener("click", function (e) {
-      if (
-        document.getElementById("mobile-menu") &&
-        !document.getElementById("menu-btn").contains(e.target)
-      ) {
-        toggle_menu.value = false;
-      }
-      if (
-        document.getElementById("profile-menu") &&
-        !document.getElementById("profile-btn").contains(e.target)
-      ) {
-        toggle_profile.value = false;
-      }
-    });
-  });
-
-  function toggleMenu() {
-    toggle_menu.value = !toggle_menu.value;
-  }
-
-  function toggleProfile() {
-    toggle_profile.value = !toggle_profile.value;
-  }
-</script>
-
-
