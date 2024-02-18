@@ -11,7 +11,7 @@
       </div>
       <div class="two lg:w-1/2">
         <div class="spotlight-image-container rounded-t-xl lg:rounded-none lg:rounded-r-xl">
-          <img class="spotlight-image" src="/img/offGrid.png" alt="">
+          <img class="spotlight-image" src="/img/w-o.png" alt="">
         </div>
       </div>
     </div>

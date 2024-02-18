@@ -10,8 +10,9 @@ export default defineNuxtConfig({
       title: 'VBC',
       meta: [
         { charset: 'utf-8' },
+        { name: 'theme-color', content: '#374151' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1.0' },
-        { hid: 'description', name: 'description', content: '' },
+        { name: 'description', content: '' },
       ],
     },
   },

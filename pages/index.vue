@@ -6,7 +6,7 @@
 
   <section>
 
-    <div class="flex justify-center pb-10">
+    <div class="flex justify-center pb-10 ">
       <h1 class="text-4xl font-semibold">IN THE SPOTLIGHT</h1>
     </div>
 
@@ -23,6 +23,48 @@
     </div>
 
   </section>
+
+  <section>
+
+    <div class="flex justify-center pt-10 pb-10">
+      <h1 class="text-4xl font-semibold">RECENT FIGHTS</h1>
+    </div>
+
+    <div>
+
+    </div>
+
+    <div>
+
+    </div>
+
+    <div>
+      
+    </div>
+
+  </section>
+
+  <section>
+
+    <div class="flex justify-center pt-10 pb-10">
+      <h1 class="text-4xl font-semibold">RANKINGS</h1>
+    </div>
+
+    <div>
+
+    </div>
+
+    <div>
+
+    </div>
+
+    <div>
+      
+    </div>
+
+  </section>
+
+  
 
 </template>
 

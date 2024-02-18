@@ -1,5 +1,7 @@
 <template>
-      <WeightClass />   
+  <div class="pt-4">
+    <WeightClass />   
+  </div>
 </template>
 
 <script setup>

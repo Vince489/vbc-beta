@@ -19,11 +19,11 @@
             <!-- primary nav-->
             <div class="hidden md:flex items-center space-x-3">
 
-              <nuxt-link to="/fighters" class="font-semibold py-3 px-3 text-gray-300">Fighters</nuxt-link>
-              <nuxt-link to="/ebca" class="font-semibold py-3 px-3 text-gray-300">EBCA</nuxt-link>
-              <nuxt-link to="/about" class="font-semibold py-3 px-3 text-gray-300">About</nuxt-link>
-              <nuxt-link to="#/contact" class="font-semibold py-3 px-3 text-gray-300">Contact</nuxt-link>
-
+              <nuxt-link to="/fighters" class="font-semibold py-3 px-3 text-lg text-gray-100">FytRec</nuxt-link>
+              <nuxt-link to="/ebca" class="font-semibold py-3 px-3 text-lg text-gray-100">EBCA</nuxt-link>
+              <nuxt-link to="#/promoters" class="font-semibold py-3 text-lg px-3 text-gray-100">Promoters</nuxt-link>
+              <nuxt-link to="/about" class="font-semibold py-3 px-3 text-lg text-gray-100">About</nuxt-link>
+              <nuxt-link to="#/contact" class="font-semibold py-3 px-3 text-lg text-gray-100">Contact</nuxt-link>
             </div>
           </div>
 
@@ -62,7 +62,7 @@
           >Events</nuxt-link
         > -->
         <nuxt-link to="/fighters" class="text-gray-100 block py-3 px-4 hover:bg-gray-200"
-          >Fighters</nuxt-link
+          >FytRec</nuxt-link
         >
         <nuxt-link to="login" class="text-gray-100 block py-3 px-4 hover:bg-gray-200">Login</nuxt-link
         >        
