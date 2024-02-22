@@ -24,15 +24,13 @@
             </div>
           </div>
 
-          <!-- Second nav -->
+          <!--second nav-->
           <div class="hidden md:flex items-center space-x-3">
-            <template v-if="isLoggedIn">
-              <nuxt-link @click="logout" class="btn">Logout</nuxt-link>
-            </template>
-            <template v-else>
-              <nuxt-link to="login" class="font-semibold py-1 px-3 text-gray-100">Login</nuxt-link>
-              <nuxt-link to="signup" class="btn">Sign up</nuxt-link>
-            </template>
+            <!-- Conditionally display logout button -->
+            <button v-if="isLoggedIn" @click="logout" class="font-semibold py-1 px-3 text-gray-300">Logout</button>
+            <!-- Otherwise, display login and signup buttons -->
+            <nuxt-link v-else to="login" class="font-semibold py-1 px-3 text-gray-300">Login</nuxt-link>
+            <nuxt-link v-else to="signup" class="btn">Sign up</nuxt-link>
           </div>
 
           <!-- mobile button-->
@@ -60,7 +58,7 @@
       <!--mobile menu-->
       <div v-if="toggle_menu" id="mobile-menu" class="mobile-menu md:hidden">
         <nuxt-link to="/fighters" class="text-gray-100 block py-3 px-4 hover:bg-gray-200">FytRec</nuxt-link>
-        <button v-if="isLoggedIn" @click="logout" class="btn text-gray-100 font-semibold py-1 px-3 text-gray-300">Logout</button>
+        <button v-if="isLoggedIn" @click="logout" class="font-semibold py-1 px-3 text-gray-300">Logout</button>
         <nuxt-link v-else to="login" class="text-gray-100 block py-3 px-4 hover:bg-gray-200">Login</nuxt-link>
         <nuxt-link v-else to="signup" class="text-gray-100 block py-3 px-4 hover:bg-gray-200">Sign up</nuxt-link>
       </div>
@@ -73,14 +71,7 @@ import { useAuthStore } from '~/stores/authStore';
 import { onMounted } from 'vue';
 
 const authStore = useAuthStore();
-
-// Access the user object from the store
-const user = authStore.user;
-
-// Access the isLoggedIn property from the store
 const isLoggedIn = authStore.isLoggedIn;
-
-
 
 function logout() {
   // Perform logout operation

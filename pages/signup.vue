@@ -6,16 +6,10 @@
       </div>
       <form @submit.prevent="handleSubmit" class="bg-gray-400  shadow-md rounded px-8 pt-6 pb-8 mb-4">
         <div class="mb-4">
-          <label class="block text-gray-700 text-sm font-bold mb-2" for="gamerTag">
-            Gamertag
+          <label class="block text-gray-700 text-sm font-bold mb-2" for="userName">
+            Username
           </label>
-          <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="gamerTag" type="text" placeholder="Gamertag" v-model="gamerTag">
-        </div>
-        <div class="mb-4">
-          <label class="block text-gray-700 text-sm font-bold mb-2" for="email">
-            Email
-          </label>
-          <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="email" type="email" placeholder="Email" v-model="email">
+          <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="userName" type="text" placeholder="Username" v-model="userName">
         </div>
         <div class="mb-4">
           <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
@@ -38,15 +32,14 @@
 export default {
   data() {
     return {
-      gamerTag: '',
-      email: '',
+      userName: '',
       password: ''
     }
   },
   methods: {
     async handleSubmit() {
       try {
-        const response = await fetch('https://planet-virtron-api-production.up.railway.app/api/v1/gamer/signup', {
+        const response = await fetch('https://gaming-token-production.up.railway.app/api/v1/user/register', {
           method: 'POST',
           mode: 'cors',
           credentials: 'include', // Include cookies in the request
@@ -54,8 +47,7 @@ export default {
             'Content-Type': 'application/json'
           },
           body: JSON.stringify({
-            gamerTag: this.gamerTag,
-            email: this.email,
+            userName: this.userName,
             password: this.password
           })
         })
@@ -67,12 +59,11 @@ export default {
         console.log('Form submitted successfully')
 
         // Clear the inputs
-        this.gamerTag = ''
-        this.email = ''
+        this.userName = ''
         this.password = ''
 
         // Redirect to verify page
-        this.$router.push('/verify')
+        this.$router.push('/login')
       } catch (error) {
         console.error(error)
       }

@@ -23,7 +23,7 @@ export default {
   methods: {
     async fetchAccounts() {
       try {
-        const response = await fetch('https://planet-virtron-api-production.up.railway.app/api/v1/account', {
+        const response = await fetch('https://gaming-token-production.up.railway.app/api/v1/user/account', {
           method: 'GET',
           mode: 'cors',
           headers: {

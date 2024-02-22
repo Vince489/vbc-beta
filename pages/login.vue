@@ -39,18 +39,15 @@ let password = '';
 
 const handleSubmit = async () => {
   try {
-    const loggedIn = await authStore.login(userName, password);
-    if (loggedIn) {
-      console.log('Login successful');
-      // Redirect to dashboard
-      router.push('/dashboard');
-    } else {
-      console.error('Login failed');
-      // Handle login failure
-    }
+    console.log('Logging in...');
+    // Call the login method in the auth store
+    await authStore.login(userName, password);
+
+    // Redirect to the dashboard upon successful login
+    router.push('/dashboard');
   } catch (error) {
     console.error('Login failed:', error);
-    // Handle login error
+    // Handle login error (e.g., display error message)
   }
 }
 </script>
