@@ -7,4 +7,4 @@ export default defineNuxtPlugin(async (nuxtApp) => {
   } catch (error) {
     console.error('Error fetching user:', error);
   }
-});
+}); 
