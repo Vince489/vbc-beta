@@ -62,7 +62,7 @@ export const useAuthStore = defineStore({
   getters: {
     async getUser() {
       try {
-        const response = await fetch('https://gaming-token-production.up.railway.app/api/v1/user/getUser', {
+        const response = await fetch('https://auth-production-9197.up.railway.app/api/v1/user/getUser', {
           method: 'GET',
           mode: 'cors',
           headers: {
