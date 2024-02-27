@@ -5,14 +5,12 @@ export const useAuthStore = defineStore({
   state: () => ({
     // Initialize the state with the retrieved data
     user: {},
-    isLoggedIn: false, 
   }),
 
   actions: {
     // Set the User data from the server
     async setUser(data) {
       this.user = data.user
-      this.isLoggedIn = data.isLoggedIn;
     },
 
 
@@ -62,32 +60,32 @@ export const useAuthStore = defineStore({
   },
 
   getters: {
-    // async getUser() {
-    //   try {
-    //     const response = await fetch('https://gaming-token-production.up.railway.app/api/v1/user/getUser', {
-    //       method: 'GET',
-    //       mode: 'cors',
-    //       headers: {
-    //         'Content-Type': 'application/json',
-    //       },
-    //       credentials: 'include',
-    //     });
+    async getUser() {
+      try {
+        const response = await fetch('https://gaming-token-production.up.railway.app/api/v1/user/getUser', {
+          method: 'GET',
+          mode: 'cors',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          credentials: 'include',
+        });
     
-    //     if (!response.ok) {
-    //       throw new Error('Failed to fetch user');
-    //     }
+        if (!response.ok) {
+          throw new Error('Failed to fetch user');
+        }
     
-    //     // Parse response JSON
-    //     const data = await response.json();
-    //     console.log('Data:', data);
-    //     // Call setUser action to update user data
-    //     this.setUser(data);
-    //     // Return user data
-    //     return data.user;
-    //   } catch (error) {
-    //     // console.error('Error fetching user:', error.message);
-    //     throw error;
-    //   }
-    // },      
+        // Parse response JSON
+        const data = await response.json();
+        console.log('Data:', data);
+        // Call setUser action to update user data
+        this.setUser(data);
+        // Return user data
+        return data.user;
+      } catch (error) {
+        // console.error('Error fetching user:', error.message);
+        throw error;
+      }
+    },      
   },
 });
