@@ -50,7 +50,7 @@ export const useAuthStore = defineStore({
 
     async logout() {
       // Remove authState from session in MongoDB database
-      fetch('https://gaming-token-production.up.railway.app/api/v1/user/logout', {
+      fetch('https://virtron-beta.netlify.app/api/v1/user/logout', {
         method: 'GET',
         mode: 'cors',
         headers: {
@@ -62,32 +62,32 @@ export const useAuthStore = defineStore({
   },
 
   getters: {
-    async getUser() {
-      try {
-        const response = await fetch('https://gaming-token-production.up.railway.app/api/v1/user/getUser', {
-          method: 'GET',
-          mode: 'cors',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          credentials: 'include',
-        });
+    // async getUser() {
+    //   try {
+    //     const response = await fetch('https://gaming-token-production.up.railway.app/api/v1/user/getUser', {
+    //       method: 'GET',
+    //       mode: 'cors',
+    //       headers: {
+    //         'Content-Type': 'application/json',
+    //       },
+    //       credentials: 'include',
+    //     });
     
-        if (!response.ok) {
-          throw new Error('Failed to fetch user');
-        }
+    //     if (!response.ok) {
+    //       throw new Error('Failed to fetch user');
+    //     }
     
-        // Parse response JSON
-        const data = await response.json();
-        console.log('Data:', data);
-        // Call setUser action to update user data
-        this.setUser(data);
-        // Return user data
-        return data.user;
-      } catch (error) {
-        // console.error('Error fetching user:', error.message);
-        throw error;
-      }
-    },      
+    //     // Parse response JSON
+    //     const data = await response.json();
+    //     console.log('Data:', data);
+    //     // Call setUser action to update user data
+    //     this.setUser(data);
+    //     // Return user data
+    //     return data.user;
+    //   } catch (error) {
+    //     // console.error('Error fetching user:', error.message);
+    //     throw error;
+    //   }
+    // },      
   },
 });
