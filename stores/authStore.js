@@ -19,7 +19,7 @@ export const useAuthStore = defineStore({
     // Login user
     async login(username, password) {
       try {
-        const response = await fetch('auth-production-9197.up.railway.app/api/v1/user/login', {
+        const response = await fetch('https://auth-production-9197.up.railway.app/api/v1/user/login', {
           method: 'POST',
           mode: 'cors',
           headers: {
@@ -50,7 +50,7 @@ export const useAuthStore = defineStore({
 
     async logout() {
       // Remove authState from session in MongoDB database
-      fetch('https://virtron-beta.netlify.app/api/v1/user/logout', {
+      fetch('https://auth-production-9197.up.railway.app/api/v1/user/logout', {
         method: 'GET',
         mode: 'cors',
         headers: {
