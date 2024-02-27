@@ -5,21 +5,19 @@ export const useAuthStore = defineStore({
   state: () => ({
     // Initialize the state with the retrieved data
     user: {},
-    isLoggedIn: false, 
   }),
 
   actions: {
     // Set the User data from the server
     async setUser(data) {
       this.user = data.user
-      this.isLoggedIn = data.isLoggedIn;
     },
 
 
     // Login user
     async login(username, password) {
       try {
-        const response = await fetch('https://gaming-token-production.up.railway.app/api/v1/user/login', {
+        const response = await fetch('https://auth-production-9197.up.railway.app/api/v1/user/login', {
           method: 'POST',
           mode: 'cors',
           headers: {
@@ -50,7 +48,7 @@ export const useAuthStore = defineStore({
 
     async logout() {
       // Remove authState from session in MongoDB database
-      fetch('https://gaming-token-production.up.railway.app/api/v1/user/logout', {
+      fetch('https://auth-production-9197.up.railway.app/api/v1/user/logout', {
         method: 'GET',
         mode: 'cors',
         headers: {
