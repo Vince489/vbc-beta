@@ -19,7 +19,7 @@ export const useAuthStore = defineStore({
     // Login user
     async login(username, password) {
       try {
-        const response = await fetch('https://gaming-token-production.up.railway.app/api/v1/user/login', {
+        const response = await fetch('auth-production-9197.up.railway.app/api/v1/user/login', {
           method: 'POST',
           mode: 'cors',
           headers: {
