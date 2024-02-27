@@ -39,7 +39,7 @@ export default {
   methods: {
     async handleSubmit() {
       try {
-        const response = await fetch('https://gaming-token-production.up.railway.app/api/v1/user/register', {
+        const response = await fetch('auth-production-9197.up.railway.app/api/v1/user/register', {
           method: 'POST',
           mode: 'cors',
           credentials: 'include', // Include cookies in the request
