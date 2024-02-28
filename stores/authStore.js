@@ -59,7 +59,7 @@ export const useAuthStore = defineStore({
 
         if (response.ok) {
           // Clear the JWT cookie on successful logout
-          document.cookie = 'jwt=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;'; // Set cookie expiration to a past date
+          document.cookie = 'jwt=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; SameSite=None; Secure'; // Set cookie expiration to a past date
           
           // Redirect to login page
           window.location.href = '/login';
