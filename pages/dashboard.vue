@@ -53,7 +53,7 @@ const handleAirdrop = async () => {
     } else {
       console.error('Airdrop failed:', response.statusText);
     }
-    router.push('/dashboard');
+    // router.push('/dashboard');
   } catch (error) {
     console.error('Airdrop failed:', error);
   }
