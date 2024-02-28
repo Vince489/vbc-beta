@@ -107,6 +107,7 @@ async login(username, password) {
 
     // Logout user
     async logout() {
+      this.user = null;
       try {
         // Remove authState from session in MongoDB database
         const response = await fetch('https://auth-production-9197.up.railway.app/api/v1/user/logout', {
