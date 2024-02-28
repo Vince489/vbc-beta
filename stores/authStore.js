@@ -14,48 +14,96 @@ export const useAuthStore = defineStore({
     },
 
     // Login user
-    async login(username, password) {
-      try {
-        const response = await fetch('https://auth-production-9197.up.railway.app/api/v1/user/login', {
-          method: 'POST',
-          mode: 'cors',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          credentials: 'include',
-          body: JSON.stringify({ userName: username, password }),
-        });
+    // async login(username, password) {
+    //   try {
+    //     const response = await fetch('https://auth-production-9197.up.railway.app/api/v1/user/login', {
+    //       method: 'POST',
+    //       mode: 'cors',
+    //       headers: {
+    //         'Content-Type': 'application/json',
+    //       },
+    //       credentials: 'include',
+    //       body: JSON.stringify({ userName: username, password }),
+    //     });
     
-        if (!response.ok) {
-          throw new Error('Login failed');
-        }
+    //     if (!response.ok) {
+    //       throw new Error('Login failed');
+    //     }
 
-        // Fetch user data
-        const fetchResponse = await fetch('https://auth-production-9197.up.railway.app/api/v1/user/getUser', {
-          method: 'GET',
-          mode: 'cors',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          credentials: 'include',
-        });
+    //     // Fetch user data
+    //     const fetchResponse = await fetch('https://auth-production-9197.up.railway.app/api/v1/user/getUser', {
+    //       method: 'GET',
+    //       mode: 'cors',
+    //       headers: {
+    //         'Content-Type': 'application/json',
+    //       },
+    //       credentials: 'include',
+    //     });
 
-        // Call setUser action to update user data
-        this.setUser(fetchResponse);
-        // Parse response JSON
-        const data = await fetchResponse.json();
+    //     // Call setUser action to update user data
+    //     this.setUser(fetchResponse);
+    //     // Parse response JSON
+    //     const data = await fetchResponse.json();
 
-        console.log('User Obj:', data.user);
+    //     console.log('User Obj:', data.user);
 
-        // Redirect to dashboard
-        window.location.href = '/dashboard';
+    //     // Redirect to dashboard
+    //     window.location.href = '/dashboard';
         
-        return true;
-      } catch (error) {
-        console.error('Login failed:', error);
-        throw error;
-      }
-    },
+    //     return true;
+    //   } catch (error) {
+    //     console.error('Login failed:', error);
+    //     throw error;
+    //   }
+    // },
+
+    // Login user
+async login(username, password) {
+  try {
+    const response = await fetch('https://auth-production-9197.up.railway.app/api/v1/user/login', {
+      method: 'POST',
+      mode: 'cors',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      credentials: 'include',
+      body: JSON.stringify({ userName: username, password }),
+    });
+
+    if (!response.ok) {
+      throw new Error('Login failed');
+    }
+
+    // Fetch user data
+    const fetchResponse = await fetch('https://auth-production-9197.up.railway.app/api/v1/user/getUser', {
+      method: 'GET',
+      mode: 'cors',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      credentials: 'include',
+    });
+
+    if (!fetchResponse.ok) {
+      throw new Error('Failed to fetch user data');
+    }
+
+    // Parse response JSON
+    const data = await fetchResponse.json();
+
+    // Call setUser action to update user data
+    this.setUser(data.user);
+
+    // Redirect to dashboard
+    window.location.href = '/dashboard';
+
+    return true;
+  } catch (error) {
+    console.error('Login failed:', error);
+    throw error;
+  }
+},
+
 
     // Logout user
     async logout() {

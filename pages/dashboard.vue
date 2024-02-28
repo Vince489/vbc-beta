@@ -62,9 +62,9 @@ const handleAirdrop = async () => {
 };
 
 // hit the getUser from pinia store
-// onMounted(() => {
-//   authStore.getUser()
-// })
+onMounted(() => {
+  authStore.getUser()
+})
 
 </script>
 
