@@ -36,6 +36,9 @@ export const useAuthStore = defineStore({
         // Call setUser action to update user data
         this.setUser(data);
         console.log('User Obj:', data.user);
+
+        // Redirect to dashboard
+        window.location.href = '/dashboard';
         
         return true;
       } catch (error) {

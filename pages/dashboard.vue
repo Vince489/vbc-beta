@@ -30,7 +30,7 @@ const zenniesToTokens = (zennies) => {
 const handleLogout = async () => {
   try {
     await authStore.logout(); // Call the logout function from the store
-    router.push('/login'); // Redirect to the login page after logout
+    // router.push('/login'); // Redirect to the login page after logout
   } catch (error) {
     console.error('Logout failed:', error);
   }
