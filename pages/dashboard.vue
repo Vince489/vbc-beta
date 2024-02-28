@@ -11,6 +11,7 @@
 </template>
 
 <script setup>
+
 import { useAuthStore } from '~/stores/authStore';
 import { useRouter } from 'vue-router';
 import { onMounted } from 'vue'
@@ -65,4 +66,10 @@ onMounted(() => {
   authStore.getUser()
 })
 
+</script>
+
+<script>
+export default {
+  middleware: 'auth' // Use the auth middleware for this page
+};
 </script>
