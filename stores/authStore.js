@@ -90,13 +90,12 @@ async login(username, password) {
 
     // Parse response JSON
     const data = await fetchResponse.json();
-    console.log('Data2getUser:', data);
-
+    
     // Call setUser action to update user data
     this.setUser(data.user);
 
     // Redirect to dashboard
-    // window.location.href = '/dashboard';
+    window.location.href = '/dashboard';
 
     return true;
   } catch (error) {
