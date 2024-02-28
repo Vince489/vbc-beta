@@ -44,17 +44,36 @@ export const useAuthStore = defineStore({
       }
     },
 
-    async logout() {
-      // Remove authState from session in MongoDB database
-      fetch('https://auth-production-9197.up.railway.app/api/v1/user/logout', {
-        method: 'GET',
-        mode: 'cors',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        credentials: 'include',
-      });
-    },    
+    actions: {
+      async logout() {
+        try {
+          // Remove authState from session in MongoDB database
+          const response = await fetch('https://auth-production-9197.up.railway.app/api/v1/user/logout', {
+            method: 'GET',
+            mode: 'cors',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            credentials: 'include',
+          });
+  
+          if (response.ok) {
+            // Clear the JWT cookie on successful logout
+            document.cookie = 'jwt=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;'; // Set cookie expiration to a past date
+            
+            // Optionally, you can reset the user state in your store after logout
+            this.user = {};
+            
+            console.log('User logged out');
+          } else {
+            throw new Error('Logout failed');
+          }
+        } catch (error) {
+          console.error('Logout failed:', error);
+          throw error;
+        }
+      },
+    },
   },
 
   getters: {
