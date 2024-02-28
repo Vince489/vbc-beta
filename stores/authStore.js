@@ -3,14 +3,14 @@ import { defineStore } from 'pinia';
 export const useAuthStore = defineStore({
   id: 'auth',
   state: () => ({
-    // Initialize the state with the retrieved data
-    user: {},
+    user: {
+      isLoggedIn: false, // Add isLoggedIn flag
+    },
   }),
 
   actions: {
-    // Set the User data from the server
     setUser(data) {
-      this.user = data.user;
+      this.user = { ...data.user, isLoggedIn: true }; // Update isLoggedIn when user is set
     },
 
     // Login user
@@ -107,7 +107,9 @@ async login(username, password) {
 
     // Logout user
     async logout() {
-      this.user = null;
+      // Clear the user data from the store
+      this.user = { isLoggedIn: false }; // Update isLoggedIn when user logs out
+
       try {
         // Remove authState from session in MongoDB database
         const response = await fetch('https://auth-production-9197.up.railway.app/api/v1/user/logout', {
@@ -122,7 +124,7 @@ async login(username, password) {
         if (response.ok) {
           // Clear the JWT cookie on successful logout
           document.cookie = 'jwt=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; SameSite=None; Secure'; // Set cookie expiration to a past date
-          
+
           // Redirect to login page
           window.location.href = '/login';
           console.log('User logged out');
