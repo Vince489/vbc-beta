@@ -1,7 +1,7 @@
 <template>
   <div class="pt-20">
     <h1>Dashboard</h1>
-    <h1>Welcome, {{ user }}</h1>
+    <h1>Welcome, {{ user.userName }}</h1>
     <p>Code Name: {{ user.codeName }}</p>
     <p>User ID: {{ user._id }}</p>
     <p>User Balance: {{ zenniesToTokens(user.balance).toFixed(2) }} VRT</p>
@@ -13,7 +13,6 @@
 <script setup>
 import { useAuthStore } from '~/stores/authStore';
 import { useRouter } from 'vue-router';
-import { onMounted } from 'vue';
 
 const authStore = useAuthStore();
 const user = authStore.user;
@@ -60,12 +59,4 @@ const handleAirdrop = async () => {
   }
 };
 
-// Fetch user data when the component is mounted
-// onMounted(async () => {
-//   try {
-//     await authStore.getUser();
-//   } catch (error) {
-//     console.error('Failed to fetch user:', error);
-//   }
-// });
 </script>
