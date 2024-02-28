@@ -61,9 +61,8 @@ export const useAuthStore = defineStore({
           // Clear the JWT cookie on successful logout
           document.cookie = 'jwt=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;'; // Set cookie expiration to a past date
           
-          // Optionally, you can reset the user state in your store after logout
-          this.user = {};
-          
+          // Redirect to login page
+          window.location.href = '/login';
           console.log('User logged out');
         } else {
           throw new Error('Logout failed');
