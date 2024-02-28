@@ -61,11 +61,11 @@ const handleAirdrop = async () => {
 };
 
 // Fetch user data when the component is mounted
-onMounted(async () => {
-  try {
-    await authStore.getUser();
-  } catch (error) {
-    console.error('Failed to fetch user:', error);
-  }
-});
+// onMounted(async () => {
+//   try {
+//     await authStore.getUser();
+//   } catch (error) {
+//     console.error('Failed to fetch user:', error);
+//   }
+// });
 </script>
