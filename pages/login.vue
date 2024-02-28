@@ -44,7 +44,7 @@ const handleSubmit = async () => {
     await authStore.login(userName, password);
 
     // Redirect to the dashboard upon successful login
-    // router.push('/dashboard');
+    router.push('/dashboard');
   } catch (error) {
     console.error('Login failed:', error);
     // Handle login error (e.g., display error message)
