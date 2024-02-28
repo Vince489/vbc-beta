@@ -9,10 +9,9 @@ export const useAuthStore = defineStore({
 
   actions: {
     // Set the User data from the server
-    async setUser(data) {
-      this.user = data.user
+    setUser(data) {
+      this.user = data.user;
     },
-
 
     // Login user
     async login(username, password) {
@@ -31,14 +30,13 @@ export const useAuthStore = defineStore({
           throw new Error('Login failed');
         }
     
-        const  data  = await response.json();
+        const data = await response.json();
         console.log('It works!! data:', data);
 
         // Call setUser action to update user data
         this.setUser(data);
         console.log('User Obj:', data.user);
         
-
         return true;
       } catch (error) {
         console.error('Login failed:', error);
@@ -70,7 +68,7 @@ export const useAuthStore = defineStore({
           },
           credentials: 'include',
         });
-    
+        console.log('Response:', response);
         if (!response.ok) {
           throw new Error('Failed to fetch user');
         }
@@ -79,7 +77,7 @@ export const useAuthStore = defineStore({
         const data = await response.json();
         console.log('Data:', data);
         // Call setUser action to update user data
-        this.setUser(data);
+        this.setUser(data); // <-- Fix this line
         // Return user data
         return data.user;
       } catch (error) {
