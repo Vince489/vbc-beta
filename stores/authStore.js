@@ -96,7 +96,7 @@ async login(username, password) {
     this.setUser(data.user);
 
     // Redirect to dashboard
-    window.location.href = '/dashboard';
+    // window.location.href = '/dashboard';
 
     return true;
   } catch (error) {
