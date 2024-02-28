@@ -124,7 +124,7 @@ async login(username, password) {
           document.cookie = 'jwt=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; SameSite=None; Secure'; // Set cookie expiration to a past date
           
           // Redirect to login page
-          // window.location.href = '/login';
+          window.location.href = '/login';
           console.log('User logged out');
         } else {
           throw new Error('Logout failed');
