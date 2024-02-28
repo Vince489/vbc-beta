@@ -14,7 +14,7 @@
 
 import { useAuthStore } from '~/stores/authStore';
 import { useRouter } from 'vue-router';
-import { onMounted } from 'vue'
+// import { onMounted } from 'vue'
 
 const authStore = useAuthStore();
 const user = authStore.user;
@@ -62,9 +62,9 @@ const handleAirdrop = async () => {
 };
 
 // hit the getUser from pinia store
-onMounted(() => {
-  authStore.getUser()
-})
+// onMounted(() => {
+//   authStore.getUser()
+// })
 
 </script>
 

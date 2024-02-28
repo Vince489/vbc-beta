@@ -29,12 +29,22 @@ export const useAuthStore = defineStore({
         if (!response.ok) {
           throw new Error('Login failed');
         }
-    
-        const data = await response.json();
-        console.log('It works!! data:', data);
+
+        // Fetch user data
+        const fetchResponse = await fetch('https://auth-production-9197.up.railway.app/api/v1/user/getUser', {
+          method: 'GET',
+          mode: 'cors',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          credentials: 'include',
+        });
 
         // Call setUser action to update user data
-        this.setUser(data);
+        this.setUser(fetchResponse);
+        // Parse response JSON
+        const data = await fetchResponse.json();
+
         console.log('User Obj:', data.user);
 
         // Redirect to dashboard
