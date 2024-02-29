@@ -1,5 +1,3 @@
-// plugins/auth-plugin.js
-import { useAuthStore } from '~/stores/authStore';
 
 export default defineNuxtPlugin(async (nuxtApp) => {
   const authStore = useAuthStore();
