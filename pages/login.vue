@@ -41,7 +41,13 @@ const handleSubmit = async () => {
   try {
     console.log('Logging in...');
     // Call the login method in the auth store
-    await authStore.login(userName, password);
+    // await authStore.login(userName, password);
+    await authStore.login(userName, password).then(response => {
+      const jwt = response.token
+      document.cookie = `jwt=${jwt} HttpOnly; Secure ; SameSite=Strict; Expires=${new Date(new Date().getTime() + 3600 * 1000).toUTCString()}`;
+      // const jwt = useCookie('jwt',)
+      // jwt.value = response.token
+      });
 
     // Redirect to the dashboard upon successful login
     router.push('/dashboard');
