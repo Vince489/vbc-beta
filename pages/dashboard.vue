@@ -29,7 +29,9 @@ const zenniesToTokens = (zennies) => {
 // Define a function to handle logout
 const handleLogout = async () => {
   try {
-    await authStore.logout(); // Call the logout function from the store
+    await authStore.logout() 
+      const jwt = useCookie('jwt')
+      jwt.value = null
     router.push('/login'); // Redirect to the login page after logout
   } catch (error) {
     console.error('Logout failed:', error);
