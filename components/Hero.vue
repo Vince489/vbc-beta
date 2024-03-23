@@ -19,7 +19,7 @@
             <p class="text-gray-100 text-lg">
               Professional (NO HUD) Boxing.
             </p>
-            <button class="btn">
+            <button class="btn" @click="handleJoinNowClick">
               Join Now!
             </button>
           </div>
@@ -28,3 +28,15 @@
     </div>
   </section>
 </template>
+
+<script>
+export default {
+  methods: {
+    handleJoinNowClick() {
+      // Handle the click event here
+      // For example, you can redirect to the sign-up page:
+      this.$router.push('/signup');
+    }
+  }
+}
+</script>
