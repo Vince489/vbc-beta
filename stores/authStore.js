@@ -38,6 +38,7 @@ export const useAuthStore = defineStore("authStore", () => {
                 // await this.setUserData(data.user); // Wait for setting state to complete
 
                 setAuthenticated(data.user, data.token, data.user.isAuthenticated)
+                console.log('isAuth', data.user.isAuthenticated)
                 return resolve(data)
             } catch (error) {
                 console.error('Error logging in:', error);

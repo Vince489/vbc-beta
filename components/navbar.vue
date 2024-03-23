@@ -17,16 +17,17 @@
             <!-- primary nav-->
             <div class="hidden md:flex items-center space-x-3">
               <nuxt-link to="/fighters" class="font-semibold py-3 px-3 text-lg text-gray-100">FytRec</nuxt-link>
-              <nuxt-link to="/ebca" class="font-semibold py-3 px-3 text-lg text-gray-100">EBCA</nuxt-link>
-              <nuxt-link to="#/promoters" class="font-semibold py-3 text-lg px-3 text-gray-100">Promoters</nuxt-link>
+              <!-- <nuxt-link to="/ebca" class="font-semibold py-3 px-3 text-lg text-gray-100">EBCA</nuxt-link>
+              <nuxt-link to="#/promoters" class="font-semibold py-3 text-lg px-3 text-gray-100">Promoters</nuxt-link> -->
               <nuxt-link to="/about" class="font-semibold py-3 px-3 text-lg text-gray-100">About</nuxt-link>
-              <nuxt-link to="#/contact" class="font-semibold py-3 px-3 text-lg text-gray-100">Contact</nuxt-link>
+              <!-- <nuxt-link to="#/contact" class="font-semibold py-3 px-3 text-lg text-gray-100">Contact</nuxt-link> -->
+              <nuxt-link v-if="isAuthenticated" to="/dashboard" class="font-semibold py-3 px-3 text-lg text-gray-100">Dashboard</nuxt-link>
             </div>
           </div>
 
           <!-- Second nav -->
           <div class="hidden md:flex items-center space-x-3">
-            <template v-if="isLoggedIn">
+            <template v-if="isAuthenticated">
               <nuxt-link @click="logout" class="btn">Logout</nuxt-link>
             </template>
             <template v-else>
@@ -57,51 +58,36 @@
         </div>
       </div>
 
-      <!--mobile menu-->
-      <div v-if="toggle_menu" id="mobile-menu" class="mobile-menu md:hidden">
-        <nuxt-link to="/fighters" class="text-gray-100 block py-3 px-4 hover:bg-gray-200">FytRec</nuxt-link>
-        <button v-if="isLoggedIn" @click="logout" class="btn text-gray-100 font-semibold py-1 px-3 text-gray-300">Logout</button>
-        <nuxt-link v-else to="login" class="text-gray-100 block py-3 px-4 hover:bg-gray-200">Login</nuxt-link>
-        <nuxt-link v-else to="signup" class="text-gray-100 block py-3 px-4 hover:bg-gray-200">Sign up</nuxt-link>
-      </div>
+  <!--mobile menu-->
+  <div v-if="toggle_menu" id="mobile-menu" class="mobile-menu md:hidden">
+    <nuxt-link v-if="isAuthenticated" to="/dashboard" class="text-gray-100 block py-3 px-4 hover:bg-gray-200">Dashboard</nuxt-link>
+    <nuxt-link to="/fighters" class="text-gray-100 block py-3 px-4 hover:bg-gray-200">FytRec</nuxt-link>
+    <button v-if="isAuthenticated" @click="logout" class="text-gray-100 block py-3 px-4 hover:bg-gray-200">Logout</button>
+    <template v-else>
+      <nuxt-link to="/login" class="text-gray-100 block py-3 px-4 hover:bg-gray-200">Login</nuxt-link>
+      <nuxt-link to="/signup" class="text-gray-100 block py-3 px-4 hover:bg-gray-200">Sign up</nuxt-link>
+    </template>
+  </div>
+
     </nav>
   </div>
 </template>
 
 <script setup>
-import { useAuthStore } from '~/stores/authStore';
-import { onMounted } from 'vue';
+import {useAuthStore} from "~/stores/authStore.js";
+import {ref, onMounted} from 'vue';
 
-const authStore = useAuthStore();
-
-// Access the user object from the store
-const user = authStore.user;
-
-// Access the isLoggedIn property from the store
-const isLoggedIn = authStore.isLoggedIn;
-
-
-
-function logout() {
-  // Perform logout operation
-}
+const authStore = useAuthStore()
+const isAuthenticated = computed(() => authStore.isAuthenticated);
+const router = useRouter(); // Import useRouter function
 
 let toggle_menu = ref(false);
-let toggle_profile = ref(false);
+
 
 onMounted(() => {
   window.addEventListener("click", function (e) {
-    if (
-      document.getElementById("mobile-menu") &&
-      !document.getElementById("menu-btn").contains(e.target)
-    ) {
+    if (document.getElementById("mobile-menu") && !document.getElementById("menu-btn").contains(e.target)) {
       toggle_menu.value = false;
-    }
-    if (
-      document.getElementById("profile-menu") &&
-      !document.getElementById("profile-btn").contains(e.target)
-    ) {
-      toggle_profile.value = false;
     }
   });
 });
@@ -110,7 +96,9 @@ function toggleMenu() {
   toggle_menu.value = !toggle_menu.value;
 }
 
-function toggleProfile() {
-  toggle_profile.value = !toggle_profile.value;
+function logout() {
+  authStore.$reset();
+  // redirect to login page
+  router.push('/login');
 }
 </script>
