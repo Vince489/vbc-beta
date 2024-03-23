@@ -4,7 +4,7 @@
       <div class="flex flex-col max-w-6xl lg:flex-row p-4 pb-6 mx-auto">
         <div class="two lg:w-1/2">
           <div>
-            <img class="spotlight-image" src="/img/w-o.png" alt="">
+            <!-- <img class="spotlight-image" src="/img/w-o.png" alt=""> -->
             <img class="rounded-t-xl lg:rounded-none lg:rounded-l-xl" src="https://vince489.github.io/virtronesports/img/lee-ko.png" alt="">
           </div>
         </div>     
