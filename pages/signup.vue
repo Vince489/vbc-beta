@@ -33,43 +33,52 @@ export default {
   data() {
     return {
       userName: '',
-      password: ''
-    }
+      password: '',
+      userNameError: '',
+      passwordError: '',
+    };
   },
   methods: {
     async handleSubmit() {
-      try {
-        const response = await fetch('https://auth-production-9197.up.railway.app/api/v1/user/register', {
-          method: 'POST',
-          mode: 'cors',
-          credentials: 'include', // Include cookies in the request
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            userName: this.userName,
-            password: this.password
-          })
-        })
+      // Reset errors
+      this.userNameError = '';
+      this.passwordError = '';
 
-        if (!response.ok) {
-          throw new Error('Failed to submit form')
-        }
-
-        console.log('Form submitted successfully')
-
-        // Clear the inputs
-        this.userName = ''
-        this.password = ''
-
-        // Redirect to verify page
-        this.$router.push('/login')
-      } catch (error) {
-        console.error(error)
+      // Validation logic (you can replace this with your own validation)
+      if (!this.userName) {
+        this.userNameError = 'userName is required.';
       }
-    }
-  }
-}
+
+      if (!this.password) {
+        this.passwordError = 'Password is required.';
+      }
+
+      // Perform signup logic if no errors
+      if (!this.userNameError && !this.passwordError) {
+        try {
+          const response = await fetch('https://zplogin-production.up.railway.app/api/v1/user/register', { // Modified endpoint
+            method: 'POST',
+            mode: 'cors',
+            credentials: 'include',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              userName: this.userName, // Modified property name
+              password: this.password,
+            }),
+          });
+          const data = await response.json();
+          console.log(data); // Log the response from the API
+          // Optionally, redirect to another page upon successful signup
+          this.$router.push('/login');
+        } catch (error) {
+          console.error('Error signing up:', error);
+        }
+      }
+    },
+  },
+};
 </script>
 
 <style scoped>

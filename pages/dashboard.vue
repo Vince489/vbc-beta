@@ -1,65 +1,54 @@
 <template>
-  <div class="pt-20">
-    <h1>Dashboard</h1>
-    <h1>Welcome, {{ user.userName }}</h1>
-    <p>Code Name: {{ user.codeName }}</p>
-    <p>User ID: {{ user._id }}</p>
-    <p>User Balance: {{ zenniesToTokens(user.balance).toFixed(2) }} VRT</p>
-    <button class="btn" @click="handleAirdrop">Get Airdrop</button>
+  <div class="pt-20 flex flex-col items-center justify-center h-screen">
+    <h1 class="text-3xl text-slate-200 font-bold mb-8">Dashboard</h1>
+    <!-- Use a conditional rendering to show loading text while userData is null -->
+    <template v-if="!userData">
+      <p class="text-2xl text-slate-200 font-semi-bold mb-8">Loading...</p>
+    </template>
+    <!-- Once userData is available, display user's information -->
+    <template v-else>
+      <p class="text-2xl text-slate-200 font-semi-bold mb-8">Welcome to the dashboard, {{ userData.userName }}!</p>
+      <button class="text-slate-200" @click="handleLogout">Logout</button>
+    </template>
   </div>
-  <button class="btn" @click="handleLogout">Logout</button>
 </template>
 
 <script setup>
+definePageMeta({
+  title: 'Dashboard',
+  description: 'User dashboard page'
+});
+import {useAuthStore} from "~/stores/authStore.js";
+import { useRouter } from 'vue-router';
+import { onMounted, ref } from 'vue';
 
-import { useAuthStore } from '~/stores/authStore';
+definePageMeta({
+  middleware: 'auth',
+  title: 'Dashboard',
+  description: 'User dashboard page'
+});
 
-const authStore = useAuthStore();
-const user = authStore.user;
+// Get the user's information from the store
+const authStore = useAuthStore()
+const userData = ref(null); // Use a ref to make it reactive
 
-// Access the router instance
+// Get router instance
 const router = useRouter();
 
-// Method to convert zennies to tokens
-const zenniesToTokens = (zennies) => {
-  return zennies / 100; // Assuming 1 zenny = 0.01 tokens
-};
-
-// Define a function to handle logout
 const handleLogout = async () => {
   try {
-    await authStore.logout(); // Call the logout function from the store
-    // router.push('/login'); // Redirect to the login page after logout
+    await authStore.logout();
+    router.push({ name: 'login' });
   } catch (error) {
-    console.error('Logout failed:', error);
+    console.error('Error logging out:', error);
   }
 };
 
-// Define a function to handle airdrop
-const handleAirdrop = async () => {
-  try {
-    const response = await fetch('https://gaming-token-production.up.railway.app/api/v1/user/airdrop', {
-      method: 'POST',
-      mode: 'cors',
-      credentials: 'include',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
-
-    if (response.ok) {
-      // Refresh the page to display the updated balance
-      location.reload();
-    } else {
-      console.error('Airdrop failed:', response.statusText);
-    }
-    // router.push('/dashboard');
-  } catch (error) {
-    console.error('Airdrop failed:', error);
-  }
-};
-
-
+onMounted(() => {
+  userData.value = authStore.currentUser
+});
 </script>
 
-
+<style scoped>
+/* Add your scoped styles here */
+</style>

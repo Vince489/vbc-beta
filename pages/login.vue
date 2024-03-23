@@ -4,7 +4,7 @@
       <div>
         <h1 class="pb-6 text-4xl">Login</h1>
       </div>
-      <form @submit.prevent="handleSubmit" class="bg-gray-400 shadow-md rounded px-8 pt-6 pb-8 mb-4">
+      <form @submit.prevent="handleLogin" class="bg-gray-400 shadow-md rounded px-8 pt-6 pb-8 mb-4">
         <div class="mb-4">
           <label class="block text-gray-700 text-sm font-bold mb-2" for="userName">
             Username
@@ -29,25 +29,34 @@
 </template>
 
 <script setup>
-import { useAuthStore } from '~/stores/authStore';
+import {useAuthStore} from "~/stores/authStore.js";
+import { ref } from 'vue';
+import {navigateTo} from "#app";
 
-const authStore = useAuthStore();
-const router = useRouter();
+const authStore = useAuthStore()
 
-let userName = '';
-let password = '';
+const userName = ref('');
+const password = ref('');
+const userNameError = ref('');
+const passwordError = ref('');
+const generalError = ref('');
 
-const handleSubmit = async () => {
+const handleLogin = async () => {
+  // Reset errors
+  userNameError.value = '';
+  passwordError.value = '';
+  generalError.value = '';
+
   try {
-    console.log('Logging in...');
-    // Call the login method in the auth store
-    await authStore.login(userName, password);
-
-    // Redirect to the dashboard upon successful login
-    // router.push('/dashboard');
+    // Perform login
+    const response = await authStore.$login(userName.value, password.value);
+    // Check if the login attempt was successful
+    if (response?.user?.isAuthenticated) {
+      return navigateTo("/dashboard")
+    }
   } catch (error) {
-    console.error('Login failed:', error);
-    // Handle login error (e.g., display error message)
+    // Handle login error
+    generalError.value = 'Error logging in: ' + error.message;
   }
-}
+};
 </script>
