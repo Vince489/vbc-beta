@@ -8,7 +8,8 @@
     <!-- Once userData is available, display user's information -->
     <template v-else>
       <p class="text-2xl text-slate-200 font-semi-bold mb-8">Welcome to the dashboard, {{ userData.userName }}!</p>
-      <button class="text-slate-200" @click="handleLogout">Logout</button>
+      <p class="text-xl text-slate-200 font-semi-bold mb-8">Code Name: {{ userData.codeName }}</p>
+      <p class="text-xl text-slate-200 font-semi-bold mb-8">Account Balance: {{ userData.balance }}</p>
     </template>
   </div>
 </template>

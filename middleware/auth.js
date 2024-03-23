@@ -17,5 +17,5 @@ export default defineNuxtRouteMiddleware((to, _from) => {
 
     // User is not authenticated and not on the login page,
     // redirect them to the login page
-    return { path: '/login' };
+    return navigateTo(to, '/login');
 });
