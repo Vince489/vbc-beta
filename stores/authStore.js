@@ -12,41 +12,41 @@ export const useAuthStore = defineStore("authStore", () => {
         accessToken.value = token
     }
 
-    async function $login(userName, password) {
+    async function $login(email, password) {
         return new Promise(async (resolve, reject) => {
-            try {
-                const response = await fetch('https://zplogin-production.up.railway.app/api/v1/user/login', {
-                    method: 'POST',
-                    mode: 'cors',
-                    credentials: 'include',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': 'Bearer ' + accessToken.value,
-                    },
-                    body: JSON.stringify({
-                        userName: userName,
-                        password: password,
-                    }),
-                });
-                const data = await response.json();
-                if (!response.ok) {
-                    reject(data.message)
-                    throw new Error(data.message);
-                }
-
-                // Set user data and authentication status
-                // await this.setUserData(data.user); // Wait for setting state to complete
-
-                setAuthenticated(data.user, data.token, data.user.isAuthenticated)
-                console.log('isAuth', data.user.isAuthenticated)
-                return resolve(data)
-            } catch (error) {
-                console.error('Error logging in:', error);
-                reject(error)
-                throw error;
+          try {
+            const response = await fetch('https://zplogin-production.up.railway.app/api/v1/user/login', {
+              method: 'POST',
+              mode: 'cors',
+              credentials: 'include',
+              headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + accessToken.value,
+              },
+              body: JSON.stringify({
+                email: email,
+                password: password,
+              }),
+            });
+            const data = await response.json();
+            if (!response.ok) {
+              reject(data.message);
+              throw new Error(data.message);
             }
-        })
-    }
+      
+            // Set user data and authentication status
+            setAuthenticated(data.user, data.token, data.user.isAuthenticated);
+            console.log('isAuth', data.user.isAuthenticated);
+            return resolve(data);
+          } catch (error) {
+            console.error('Error logging in:', error);
+            reject(error);
+            throw error;
+          }
+        });
+      }
+      
+      
 
     // reset current store
     function $reset() {

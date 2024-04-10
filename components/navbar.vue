@@ -62,6 +62,7 @@
   <div v-if="toggle_menu" id="mobile-menu" class="mobile-menu md:hidden">
     <nuxt-link v-if="isAuthenticated" to="/dashboard" class="text-gray-100 block py-3 px-4 hover:bg-gray-200">Dashboard</nuxt-link>
     <nuxt-link to="/fighters" class="text-gray-100 block py-3 px-4 hover:bg-gray-200">FytRec</nuxt-link>
+    <nuxt-link to="/about" class="text-gray-100 block py-3 px-4 hover:bg-gray-200">About</nuxt-link>
     <button v-if="isAuthenticated" @click="logout" class="text-gray-100 block py-3 px-4 hover:bg-gray-200">Logout</button>
     <template v-else>
       <nuxt-link to="/login" class="text-gray-100 block py-3 px-4 hover:bg-gray-200">Login</nuxt-link>
