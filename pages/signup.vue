@@ -97,7 +97,7 @@ export default {
             this.apiError = errorMessage; // Set the API error message
           } else {
             // Optionally, redirect to another page upon successful signup
-            this.$router.push('/login');
+            this.$router.push('/verify');
           }
         } catch (error) {
           console.error('Error signing up:', error);
