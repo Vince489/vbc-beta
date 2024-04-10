@@ -13,6 +13,13 @@
           <p class="text-red-500 text-xs italic">{{ userNameError }}</p> <!-- Display username error -->
         </div>
         <div class="mb-4">
+          <label class="block text-gray-700 text-sm font-bold mb-2" for="email">
+            Email
+          </label>
+          <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="email" type="email" placeholder="Email" v-model="email">
+          <p class="text-red-500 text-xs italic">{{ emailError }}</p> <!-- Display email error -->
+        </div>
+        <div class="mb-4">
           <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
             Password
           </label>
@@ -35,8 +42,10 @@ export default {
   data() {
     return {
       userName: '',
+      email: '',
       password: '',
       userNameError: '',
+      emailError: '',
       passwordError: '',
       apiError: '', // Variable to store API error
     };
@@ -45,6 +54,7 @@ export default {
     async handleSubmit() {
       // Reset errors
       this.userNameError = '';
+      this.emailError = '';
       this.passwordError = '';
       this.apiError = ''; // Reset API error
 
@@ -53,12 +63,16 @@ export default {
         this.userNameError = 'Username is required.';
       }
 
+      if (!this.email) {
+        this.emailError = 'Email is required.';
+      }
+
       if (!this.password) {
         this.passwordError = 'Password is required.';
       }
 
       // Perform signup logic if no errors
-      if (!this.userNameError && !this.passwordError) {
+      if (!this.userNameError && !this.emailError && !this.passwordError) {
         try {
           const response = await fetch('https://zplogin-production.up.railway.app/api/v1/user/register', {
             method: 'POST',
@@ -69,6 +83,7 @@ export default {
             },
             body: JSON.stringify({
               userName: this.userName,
+              email: this.email,
               password: this.password,
             }),
           });

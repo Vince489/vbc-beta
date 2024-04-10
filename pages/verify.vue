@@ -39,7 +39,7 @@ export default {
   methods: {
     async handleSubmit() {
       try {
-        const response = await fetch('https://planet-virtron-api-production.up.railway.app/api/v1/email_verification/verify', {
+        const response = await fetch('https://zplogin-production.up.railway.app/api/v1/email_verification/verify', {
           method: 'POST',
           mode: 'cors',
           headers: {
