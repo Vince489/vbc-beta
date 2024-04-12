@@ -1,22 +1,17 @@
 <template>
   <div class="flex justify-center">
-
     <div class="flex flex-col-reverse max-w-6xl lg:flex-row p-4 pb-6 mx-auto">
-
-      <div class="one lg:w-1/2 bg-gray-600 text-gray-300 rounded-b-xl lg:rounded-none lg:rounded-l-xl">
-
-        <div class="p-10">        
-          <h2 class="pb-5 text-2xl">Lamar Wilson</h2>
-          <h3 class="pb-3">XBOX - Metabox Promotions</h3>
-          <p class="pb-5">Middleweight prospect advances to (6-0-0) with his Unanimous Decision win over Gomez. </p>
+      <div class="spotlightOne p-10 lg:w-1/2 bg-gray-600 text-gray-300 rounded-b-xl lg:rounded-none lg:rounded-l-xl flex flex-col justify-center">
+        <h2 class="pb-5 text-2xl">Kevin Andrews</h2>
+        <h3 class="pb-3">XBOX - Metabox Promotions</h3>
+        <p class="pb-5">Wilfredo Benitez bocomes the 1st VBC Lightweight Champion with his Split-Decision win over Xerxes Tszyu.</p>
+        <a href="https://youtu.be/5CjkrdrdYiw?si=yErhg80FSkv0-Fs6" target="_blank" rel="noopener noreferrer">
           <button class="px-4 py-2 rounded-full bg-[#0b7696] text-gray-300">FULL FIGHT</button>
-        </div>
-
+        </a>
       </div>
-      
       <div class="two lg:w-1/2">
-        <div>
-          <img class="spotlight-image rounded-t-xl lg:rounded-none lg:rounded-r-xl" src="https://virtronesports.com/img/ko.png" alt="">
+        <div class="spotlight-image-container rounded-t-xl lg:rounded-none lg:rounded-r-xl">
+          <img class="spotlight-image" src="/img/wilfred.png" alt="">
         </div>
       </div>
     </div>
@@ -24,9 +19,21 @@
 </template>
 
 <style scoped>
+  .justify-center {
+    display: grid; /* Use CSS Grid */
+    grid-template-columns: 1fr; /* Create a single column layout by default */
+    align-items: stretch; /* Make grid items span the full height of the container */
+  }
+
+  @media (min-width: 768px) {
+    .justify-center {
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Switch to a multi-column layout for larger screens */
+    }
+  }
+
   .spotlight-image-container {
     width: 100%;
-    max-height: 330px; /* set the desired height */
+    height: 100%; /* Ensure the container takes up the full height of its parent */
     overflow: hidden; /* Hide any overflow to prevent the image from exceeding the container */
   }
 
@@ -35,11 +42,4 @@
     height: 100%; /* Ensure the image covers the entire container */
     object-fit: cover; /* Maintain aspect ratio and cover the container */
   }
-
-  @media (max-width: 768px) {
-    .spotlight-image-container {
-      max-height: 200px; /* Adjust the max-height for mobile devices */
-    }
-  }
 </style>
-
