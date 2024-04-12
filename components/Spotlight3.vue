@@ -2,7 +2,7 @@
   <div class="flex justify-center">
     <div class="flex flex-col-reverse max-w-6xl lg:flex-row p-4 pb-6 mx-auto">
       <div class="spotlightOne p-10 lg:w-1/2 bg-gray-600 text-gray-300 rounded-b-xl lg:rounded-none lg:rounded-l-xl flex flex-col justify-center">
-        <h2 class="pb-5 text-2xl">Kevin Andrews</h2>
+        <h2 class="pb-5 text-2xl">Wilfredo Benitez</h2>
         <h3 class="pb-3">XBOX - Metabox Promotions</h3>
         <p class="pb-5">Wilfredo Benitez bocomes the 1st VBC Lightweight Champion with his Split-Decision win over Xerxes Tszyu.</p>
         <a href="https://youtu.be/5CjkrdrdYiw?si=yErhg80FSkv0-Fs6" target="_blank" rel="noopener noreferrer">
