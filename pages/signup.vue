@@ -103,6 +103,7 @@ export default {
               this.$router.push('/verify');
           }
 
+
         } catch (error) {
           console.error('Error signing up:', error);
           this.apiError = 'An error occurred while signing up. Please try again later.'; // Set a generic error message
