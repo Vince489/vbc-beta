@@ -1,6 +1,6 @@
 <template>
   <div class="container px-4 py-8 md:p-8 pt-18 flex flex-col md:flex-row justify-between items-center">
-    <h1 class="text-2xl md:text-3xl font-semibold mb-4 md:mb-0">All Fighters</h1>
+    <h1 class="text-2xl md:text-3xl font-semibold mb-4 md:mb-0">Registered Fighters</h1>
     <div class="flex flex-col md:flex-row items-center w-full md:w-auto">
       <div class="w-full md:w-64 flex justify-between items-center pr-4 mb-4 md:mb-0">
         <input type="text" class="border border-gray-300 text-gray-800 rounded-md py-2 px-4 w-full" placeholder="Search fighters...">
