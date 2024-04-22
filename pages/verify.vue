@@ -1,7 +1,7 @@
 <template>
   <div class="flex justify-center items-center mt-32">
     <div class="w-full max-w-sm ">
-      <div>
+      <div class="text-center">
         <h1 class="pb-6 text-4xl">Verify Email</h1>
       </div>
       <form @submit.prevent="handleSubmit" class="bg-gray-400 shadow-md rounded px-8 pt-6 pb-8 mb-4">
@@ -24,6 +24,12 @@
           </button>
         </div>
       </form>
+
+      <!-- Verification Message -->
+      <div class="bg-gray-300 border-t border-b border-blue-500 text-blue-700 px-4 py-3 mb-4" role="alert">
+        <p class="font-bold">Please check your email</p>
+        <p class="text-sm">We've sent a verification email to the address you provided. Follow the instructions in the email to complete the registration process.</p>
+      </div>
     </div>
   </div>
 </template>
