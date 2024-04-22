@@ -1,11 +1,5 @@
 <template>
   <div div class="container-xl px-3 px-md-4 px-lg-5 mt-2">
-    <div >
-      <img class="rounded-full" src="../img/w.png" alt="">
-      <div>
-        <p>Cool</p>
-      </div>
-    </div>
     <h1 class="text-3xl text-slate-200 font-bold mb-8">Dashboard</h1>
     <!-- Use a conditional rendering to show loading text while userData is null -->
     <template v-if="!userData">
